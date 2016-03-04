@@ -198,7 +198,7 @@ public class Light {
             friendlyBurnt = "not burnt out";
         }
 
-        return String.format("%s %s\t%s", friendlyOn, color, friendlyBurnt);
+        return String.format("%s %s\t%s%n", friendlyOn, color, friendlyBurnt);
     }
 
     // Private helper methods

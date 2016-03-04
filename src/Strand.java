@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class Strand {
     // An ArrayList that stores a strand of lights
-    private ArrayList<Light> strand = new ArrayList<Light>();
+    private ArrayList<Light> strand = new ArrayList<>();
 
     // Default constructor that sets strand to an ArrayList holding one
     // turned on white bulb, that is not burnt out.
     public Strand() {
-        /* missing code */
+        strand.add(new Light(true, false, "white"));
     }
 
     // A constructor that sets strand to an ArrayList of size n, holding
@@ -21,7 +21,14 @@ public class Strand {
     // then the strand should be set to size one, with a white bulb, on
     // and not burnt out.
     public Strand(int n) {
-		/* missing code */
+		if (n <= 0) {
+            strand.add(new Light(true, false, "white"));
+        }
+        else {
+            for (int x=0;x<n;x++) {
+                strand.add(new Light(true, false, "white"));
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -157,35 +164,70 @@ public class Strand {
     // Note: there is one space between "off"/"on" and the value for
     // color, and a tab before the "burnt out" or "not burnt out".
     public String toString() {
-		/* missing code (don't forget to update the return statement) */
-        return "";
+        String lights = "";
+		for (Light obj: strand) {
+            lights = lights + obj.toString();
+        }
+
+        return lights;
     }
 
     // This method sets the color of all the light bulbs in the entire Strand.
     public void setColor(String c) {
-
-		/* missing code */
+        for (Light obj: strand) {
+            obj.setColor(c);
+        }
     }
 
     // This method sets the light bulbs to the pattern "red", "green", "blue",
     // "red", "green", "blue",... until the end of the strand.
     public void setMulti() {
-		/* missing code */
+		int counter = 0;
+        for (int x=0;x<strand.size();x++) {
+            if (counter == 0) {
+                Light obj = strand.get(x);
+                obj.setColor("red");
+                counter++;
+            }
+            if (counter == 1) {
+                Light obj = strand.get(x);
+                obj.setColor("green");
+                counter++;
+            }
+            if (counter == 2) {
+                Light obj = strand.get(x);
+                obj.setColor("blue");
+                counter=0;
+            }
+        }
     }
 
     // This method turns on all the lights in the strand. Each individual bulb
     // can only be turned on if it's burntOut variable is false.
     public void turnOn() {
-		/* missing code */
+        Light obj = strand.get(0);
+        if (!(obj.isOn())) {
+            // Only run this if bulbs are off
+            for (Light bulb: strand) {
+                bulb.flip();
+            }
+        }
     }
 
     // This method turns off all the lights in the strand.
     public void turnOff() {
-		/* missing code */
+        Light obj = strand.get(0);
+        if (obj.isOn()) {
+            // Only run this if bulbs are on
+            for (Light bulb: strand) {
+                bulb.flip();
+            }
+        }
     }
 
     // This method sets the Light at location i’s burntOut variable to true.
     public void burnOut(int i) {
-		/* missing code */
+		Light obj = strand.get(i);
+        obj.burnOut();
     }
 }
