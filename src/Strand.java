@@ -143,6 +143,7 @@ public class Strand {
         // ***********************************
         System.out.println("\n6. Test burnOut(n)");
         strand1.burnOut(0);
+
         if (strand1.toString().equals("off white\tburnt out\n")) {
             System.out.println("*** PASS: burnOut(1) works as expected.");
         } else {
